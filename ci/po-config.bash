@@ -1,0 +1,9 @@
+BASE_DIR="${HOME}/.po-util/src"
+PARTICLE_FIRMWARE_URL='https://github.com/particle-iot/firmware.git'
+FIRMWARE_PARTICLE="${HOME}/.po-util/src/particle"
+FIRMWARE_DUO="${HOME}/.po-util/src/redbearduo"
+FIRMWARE_PI="${HOME}/.po-util/src/pi"
+export PARTICLE_DEVELOP=1
+BRANCH='release/stable'
+BRANCH_DUO='duo'
+AUTO_HEADER=false

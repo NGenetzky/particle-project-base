@@ -9,6 +9,13 @@ sudo curl -fsSLo /usr/local/share/po-linux "${RAW_GITHUB_PO}/share/po-linux"
 sudo curl -fsSLo /usr/local/bin/po "${RAW_GITHUB_PO}/bin/po"
 sudo chmod +x /usr/local/bin/po
 
-po config release/v0.6.3 duo false
+if [ -f "./ci/po-config.bash" ]; then
+  install -m 644 \
+    "./ci/po-config.bash" \
+    "${HOME}/.po-util/config"
+else
+  # Default configuration for po
+  po config release/v0.6.3 duo false
+fi
 
 po install "${HOME}/.po-util/src" basic
