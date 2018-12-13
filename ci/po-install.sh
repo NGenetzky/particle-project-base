@@ -1,12 +1,19 @@
 #!/bin/bash
 
 SRCREV_po="26d1080e79c758839872fe83170b0cf363c5f34f"
-RAW_GITHUB_PO='https://raw.githubusercontent.com/nrobinson2000/po/175597cc588e0cf8e4193feed9354fb447520766/'
-
-apt-get update
-apt install -y \
-  expect \
+RAW_GITHUB_PO="https://raw.githubusercontent.com/nrobinson2000/po/${SRCREV_po}/"
+APT_PACKAGES='
+  expect
   sudo
+'
+
+if command -v 'sudo' > '/dev/null' 2>&1 ; then
+  sudo apt-get update
+  sudo apt install -y ${APT_PACKAGES}
+else
+  apt-get update
+  apt install -y ${APT_PACKAGES}
+fi
 
 sudo curl -fsSLo '/usr/local/share/po-common' "${RAW_GITHUB_PO}/share/po-common"
 sudo curl -fsSLo '/usr/local/share/po-linux' "${RAW_GITHUB_PO}/share/po-linux"
