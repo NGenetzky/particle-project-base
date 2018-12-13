@@ -2,8 +2,10 @@ dist: trusty
 sudo: required
 language: generic
 
+install:
+  - ci/po-install.sh
 script:
-  - ci/travis.sh
+  - ci/po-build.sh
 
 cache:
   directories:

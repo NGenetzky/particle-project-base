@@ -1,6 +1,6 @@
 FROM gcc:latest
-COPY ./ci/gitlab_install_pre_build.sh /tmp/gitlab_install_pre_build.sh
-RUN /tmp/gitlab_install_pre_build.sh
+COPY ./ci/po-install.sh /tmp/po-install.sh
+RUN /tmp/po-install.sh
 COPY ./ /workspace/
 RUN cd /workspace && /workspace/ci/gitlab_build.sh
 RUN cd /workspace && /workspace/ci/gitlab_test.sh
