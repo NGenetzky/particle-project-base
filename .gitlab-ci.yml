@@ -1,9 +1,5 @@
-# use the official gcc image, based on debian
-# can use verions as well, like gcc:5.2
-# see https://hub.docker.com/_/gcc/
-image: gcc
-
 build:
+  image: gcc
   stage: build
   # instead of calling g++ directly you can also use some build toolkit like make
   # install the necessary build tools when needed
@@ -15,14 +11,10 @@ build:
     paths:
       - bin/
     when: on_success
-    expire_in: 30 days
-  # depending on your build setup it's most likely a good idea to cache outputs to reduce the build time
-  # cache:
-  #   paths:
-  #     - "*.o"
 
 # run tests using the binary built before
 test:
+  image: gcc
   stage: test
   script:
     - ci/gitlab_test.sh
