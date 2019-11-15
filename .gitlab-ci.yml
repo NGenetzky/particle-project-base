@@ -1,11 +1,29 @@
+particle_build:
+  stage: build
+  image: particle/buildpack-particle-firmware:1.4.2-xenon
+  variables:
+    PLATFORM: xenon
+    PARTICLE_BUILD_IN: src/
+    PARTICLE_BUILD_OUT: build/
+    # -Werror: Make all warnings into errors.
+    CFLAGS: '-Werror'
+  before_script:
+    - ci/particle_build_pre.sh
+  script:
+    - ci/particle_build_run.sh
+    - ci/particle_build_deploy.sh
+  artifacts:
+    paths:
+      - build/
+
 build:
   image: gcc
   stage: build
   # instead of calling g++ directly you can also use some build toolkit like make
   # install the necessary build tools when needed
-  before_script: 
+  before_script:
     - ci/po-install.sh
-  script: 
+  script:
     - ci/gitlab_build.sh
   artifacts:
     paths:
